@@ -1,4 +1,31 @@
-/* Your Code Here */
+let employeeArray =[];
+function createEmployeeRecord(employee) {
+    let employeeObject = {
+        firstName: employee[0],
+        familyName:employee[1],
+        title: employee[2],
+        payPerHour: employee[3],
+        timeInEvents: [],
+        timeOutEvents: [],
+    }
+    employeeArray.push(employeeObject)
+    return employeeObject
+}
+
+function createEmployeeRecords(employeeArr){
+    return employeeArr.map(employee => {
+        return createEmployeeRecord(employee)
+    })
+}
+
+function createTimeInEvent(dateStamp){
+    let [date, hour] = dateStamp.split(" ");
+    employee.timeInEvents.push ({
+        type: "TimeIn",
+        hour: parseInt(hour),
+        date: date
+    })
+}
 
 /*
  We're giving you this function. Take a look at it, you might see some usage
