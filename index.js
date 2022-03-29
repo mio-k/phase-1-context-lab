@@ -20,12 +20,49 @@ function createEmployeeRecords(employeeArr){
 
 function createTimeInEvent(dateStamp){
     let [date, hour] = dateStamp.split(" ");
-    employee.timeInEvents.push ({
+    this.timeInEvents.push ({
         type: "TimeIn",
         hour: parseInt(hour),
         date: date
     })
+    return this
 }
+function createTimeOutEvent(dateStamp){
+    let [date, hour] = dateStamp.split(" ")
+        this.timeOutEvents.push({
+        type: "TimeOut",
+        hour: parseInt(hour),
+        date: date
+        })
+        return this
+}
+
+function hoursWorkedOnDate(workDate){
+    let timeIn = this.timeInEvents;
+    let resultIn = timeIn.find(element => element.date === workDate )
+    let timeOut = this.timeOutEvents;
+    let resultOut = timeOut.find(element => element.date === workDate )
+    let hoursWorked = resultOut.hour - resultIn.hour;
+        return hoursWorked/100
+        }
+
+function wagesEarnedOnDate(formDate){
+    let hourlyRate = this.payPerHour;
+    let hoursWorked = hoursWorkedOnDate.call(this, formDate)
+    return hourlyRate * hoursWorked
+}
+
+function findEmployeeByFirstName(employeeArray, firstName){
+    let employee = employeeArray.find(employee => employee.firstName == firstName)
+    return employee
+}
+function calculatePayroll(employeeArray){
+    let wagesArray = employeeArray.map(employee => allWagesFor.call(employee))
+    console.log(wagesArray)
+    let reducer = (accumulator, curr) => accumulator + curr;
+    return wagesArray.reduce(reducer)
+}
+
 
 /*
  We're giving you this function. Take a look at it, you might see some usage
